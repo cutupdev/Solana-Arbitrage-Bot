@@ -1,3 +1,5 @@
+[<img src="https://img.shields.io/badge/Telegram-%40Me-orange">](https://t.me/yellowflash628)
+
 ## layout 
 - `client/`: off-chain arbitrage bot code 
 - `program/`: on-chain swap program
