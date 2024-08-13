@@ -1,6 +1,5 @@
 #!/bin/sh
 # cargo build --release # re-compile 
-
 rm log.txt # clear the log 
 # continuously search for arbitrages
 while true
