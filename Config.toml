@@ -1,0 +1,40 @@
+[credential]
+wallet_path = "./id.json"
+rpc_endpoint = "https://mainnet.helius-rpc.com?api-key=3b970149-3a5e-4ddf-a186-83f6ffe0279b"
+submit_endpoint = "https://mainnet.helius-rpc.com?api-key=3b970149-3a5e-4ddf-a186-83f6ffe0279b"
+laser_endpoint = "https://laserstream-mainnet-fra.helius-rpc.com"
+laser_token = "3b970149-3a5e-4ddf-a186-83f6ffe0279b"
+
+[services]
+confirm_service = "RPC"        # JITO / LIL_JIT / ZERO_SLOT / NOZOMI / RPC / HELIUS
+jito_api_key = "52ca2190-25f1-11f0-909b-c1413e1fddc5"
+nozomi_api_key = "4516a74a-ad06-4faf-9de4-10cce6e37f6b"
+zero_slot_key = "8d24b393b8c942c2b5e4bce55efc44a6"
+bloxroute_key = "kjbHW3Lg2qNIo3hmJHeoiLhKWDpJRzy4hmWkQDyLzed4jCtPmN4NKhMyz68wubPYlhI3D9IcXqfCEbIBlCUjnUPgxOBJS7Bl"
+liljit_endpoint = "https://blue-bitter-mountain.solana-mainnet.quiknode.pro/6148030f46f0df5effff91176a5b09b157b26c62/"
+astralane_key = "wizarXWPnaRdjBf32NMfop7oIy9kNQwY6KXyuq422qRt3hM6Oz86oGiBmla18yGJ"
+blockrazor_key = "kjbHW3Lg2qNIo3hmJHeoiLhKWDpJRzy4hmWkQDyLzed4jCtPmN4NKhMyz68wubPYlhI3D9IcXqfCEbIBlCUjnUPgxOBJS7Bl"
+nextblock_key = "ZWZmYTA0MjUtYWM2YS00OWRjLTlmNmMtNjk3ZmI3Y2UwNmFiOjJlN2Y4NDAxODhjMzc4ZmZhNTRjNjNiZTQ5Mzk4NDAx"
+jupiter_endpoint = "http://localhost:8080"
+jupiter_api_key = ""
+
+[arbitrage]
+mother_token = [
+    { token_addr = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", threshold = 0.000001, min_profit_amount = 0.01, input_amount_range = [
+        0.01,
+        500,
+    ], input_amount_steps = 20 },
+]
+nonce_addr = "GXVQcEW4t2zLzwyEZspp3sw8FGmv9KyfReeD2iTyWA5g"
+
+[fee] ####   HERE is FEE SETTING    ####
+cu = 550000
+priority_fee_micro_lamport = 50000
+third_party_fee = 0.0001
+
+[telegram]
+telegram_bot_key = "8052902705:AAFUwN83sFF5HAKVzDCNPVC3lAJJTnVS8zw"
+group_channel_id = -1002912014386
+
+[protect]
+protect_key = true
