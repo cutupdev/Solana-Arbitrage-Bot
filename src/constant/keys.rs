@@ -1,6 +1,13 @@
+//! Solana program addresses, token information, and related constants
+//!
+//! This module contains all program addresses, token mint addresses,
+//! and mapping data used for identifying DEX programs and tokens.
+
 use phf::phf_map;
 use solana_sdk::pubkey::Pubkey;
 
+/// Mapping of Solana program addresses to their DEX/protocol names
+/// Used for identifying which DEX a transaction interacts with
 pub const PROGRAM_MAP: phf::Map<&'static str, &'static str> = phf_map! {
   "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB" => "Meteora",
   "5U3EU2ubXtK84QcRjWVmYt9RaDyA8gKxdUrPFXmZyaki" => "Virtuals",
@@ -64,26 +71,53 @@ pub const PROGRAM_MAP: phf::Map<&'static str, &'static str> = phf_map! {
   "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc" => "Whirlpool"
 };
 
+/// Route discriminator bytes for Jupiter swap instructions
 pub const ROUTE_DISCRIMINATOR: [u8; 8] = [229, 23, 203, 151, 122, 227, 173, 42];
 
+// ============================================================================
+// Token Addresses
+// ============================================================================
+
+/// Wrapped SOL (WSOL) token mint address
 pub const WSOL: Pubkey = Pubkey::from_str_const("So11111111111111111111111111111111111111112");
 
+// ============================================================================
+// Program Addresses
+// ============================================================================
+
+/// Solana Token Program ID
 pub const TOKEN_PROGRAM_ID: Pubkey =
     Pubkey::from_str_const("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
+
+/// Jupiter Aggregator Program Address
 pub const JUPITER_PROGRAM_ADDR: Pubkey =
     Pubkey::from_str_const("JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4");
+
+/// Jupiter Transfer Authority
 pub const JUPITER_TRANSFER_AUTH: Pubkey =
     Pubkey::from_str_const("9nnLbotNTcUhvbrsA6Mdkx45Sm82G35zo28AqUvjExn8");
+
+/// Jupiter Event Authority
 pub const JUPITER_EVENT_AUTH: Pubkey =
     Pubkey::from_str_const("D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf");
 
+// ============================================================================
+// Token Information
+// ============================================================================
+
+/// Token information structure containing mint address, symbol, and decimals
 #[derive(Debug, Clone)]
 pub struct TokenInfo {
+    /// Token mint address
     pub mint: &'static str,
+    /// Token symbol (e.g., "USDC", "SOL")
     pub symbol: &'static str,
+    /// Number of decimal places for the token
     pub decimals: u8,
 }
 
+/// List of popular tokens with their metadata
+/// Used for quick token lookups and conversions
 pub const POPULAR_TOKEN_INFO: &[TokenInfo] = &[
     TokenInfo {
         mint: "So11111111111111111111111111111111111111112",
@@ -227,33 +261,6 @@ pub const POPULAR_TOKEN_INFO: &[TokenInfo] = &[
     },
 ];
 
-pub const INTEMEDIATE_TOKEN: &[&'static str] = &[
-    "So11111111111111111111111111111111111111112",
-    "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
-    "KMNo3nJsBXfcpJTVhZcXLW7RmTwTt4GVFE7suUBo9sS",
-    "27G8MtK7VtTcCHkpASjSDdkWWYfoqT6ggEuKidVJidD4",
-    "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
-    "3NZ9JMVBmGAqocybic2c7LQCJScmgsAZ6vQqTDzcqmJh",
-    "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
-    "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
-    "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
-    "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
-    "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
-    "85VBFQZC9TZkfaptBWjvUw7YbZjy52A6mjtPGjstQAmQ",
-    "9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i",
-    "ATLASXmbPQxBUYbxPsV97usA3fPQYEqzQBUHgiFCUsXx",
-    "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij",
-    "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
-    "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
-    "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-    "HgH6C35Ncz6SfhU8L4zeWZ18tHu6BBpZ7fU37KgxYoG3",
-    "J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn",
-    "J6pQQ3FAcJQeWPPGppWRb4nM8jU3wLyYbRrLh7feMfvd",
-    "jupSoLaHXQiZZTSfEWMTRRgpnyFm8f6sZdosWBjx93v",
-    "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
-    "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
-    "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB",
-    "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
-];
+/// List of intermediate tokens used for arbitrage routing
+/// These tokens are commonly used as intermediate steps in multi-hop swaps
+pub const INTERMEDIATE_TOKEN: &[&'static str] = &[

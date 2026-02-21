@@ -1,7 +1,12 @@
+//! Telegram notification module
+//!
+//! This module handles sending notifications to Telegram channels
+//! for bot events, trade executions, and status updates.
+
 use reqwest::Client;
 use serde::Serialize;
 
-use crate::*; // Your constants like TELEGRAM_BOT_KEY, TG_GROUP_CHANNEL, USERNAME, LOCAL_IP, PUBKEY
+use crate::*;
 
 #[derive(Serialize)]
 struct SendMessageRequest {
@@ -12,7 +17,12 @@ struct SendMessageRequest {
     disable_web_page_preview: Option<bool>,
 }
 
-/// Send a single message to Telegram via bot API
+/// Send a message to Telegram via bot API
+///
+/// # Arguments
+/// * `bot_token` - Telegram bot token
+/// * `chat_id` - Target chat/channel ID
+/// * `text` - Message text (supports HTML formatting)
 pub async fn send_telegram_message(
     bot_token: String,
     chat_id: String,
@@ -38,7 +48,9 @@ pub async fn send_telegram_message(
     Ok(())
 }
 
-/// Format and send a message to the single chat
+/// Format and send a message with bot metadata to the configured chat
+///
+/// The message includes username, local IP, and wallet address information.
 pub async fn send_messages(text: String) {
     let msg = format!(
         "{}\n{}@{}  <a href=\"https://solscan.io/account/{}\">{}</a>",
@@ -59,7 +71,11 @@ pub async fn send_messages(text: String) {
     {};
 }
 
-/// Helper to send a formatted message with title and link
+/// Send a formatted message with a title and clickable link
+///
+/// # Arguments
+/// * `title` - Message title/header
+/// * `text` - Link text and URL
 pub async fn tg_msg(title: &str, text: String) {
     let log = format!(
         "{}\n\n<a href=\"{}\" target=\"_blank\">{}</a>",
@@ -68,7 +84,13 @@ pub async fn tg_msg(title: &str, text: String) {
     send_messages(log).await;
 }
 
-/// Abbreviate a public key or long address
+/// Abbreviate a Solana address for display (first 4 + last 4 characters)
+///
+/// # Arguments
+/// * `address` - Full Solana address string
+///
+/// # Returns
+/// Abbreviated address in format "xxxx..yyyy"
 pub fn abbreviate_address(address: String) -> String {
     if address.len() <= 8 {
         return address;

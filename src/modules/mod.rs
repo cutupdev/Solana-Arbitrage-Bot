@@ -1,3 +1,11 @@
+//! Core modules for the arbitrage bot
+//!
+//! This module contains all the functional components of the bot:
+//! - Jupiter swap integration
+//! - Transaction stream processing
+//! - Arbitrage detection and execution
+//! - Utility functions and helpers
+
 pub mod encrypt;
 pub mod features;
 pub mod jupiter;
