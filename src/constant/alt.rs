@@ -1,8 +1,17 @@
+//! Address Lookup Table (ALT) constants
+//!
+//! This module contains constants related to Address Lookup Tables (ALTs)
+//! used for optimizing transaction size on Solana.
+
 use solana_sdk::pubkey::Pubkey;
 
+/// External Address Lookup Table addresses
+/// ALTs allow transactions to reference more accounts while staying within size limits
 pub const ALT_EXTERNAL: [Pubkey; 1] = [Pubkey::from_str_const(
     "3pqmFC8JcBNoZQqojvaUqTi7ydxa3EdVvbFGb7PZMqMY",
 )];
+
+// Additional ALT addresses (commented for reference):
 //   @3pqmFC8JcBNoZQqojvaUqTi7ydxa3EdVvbFGb7PZMqMY
 //   So11111111111111111111111111111111111111112
 //   EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
